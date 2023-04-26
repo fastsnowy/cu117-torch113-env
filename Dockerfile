@@ -12,10 +12,6 @@ RUN apt-get update && apt-get install -y \
     wget \
     zsh \
     curl \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update && apt-get install -y \
     libbz2-dev \
     libffi-dev \
     liblzma-dev \
@@ -34,8 +30,11 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN ln -s /usr/bin/python3.8 /usr/bin/python
-RUN ln -s /usr/bin/pip3 /usr/bin/pip
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 # add asdf install
 RUN git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.3
 SHELL ["/bin/bash", "-c"]
