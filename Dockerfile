@@ -1,8 +1,5 @@
 FROM nvidia/cuda:11.7.1-cudnn8-runtime-ubuntu20.04
 WORKDIR /workspace
-ARG DOCKER_UID=1000
-ARG DOCKER_USER=devuser
-ARG DOCKER_PASSWORD=docker
 ENV TZ=Asia/Tokyo
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
@@ -15,8 +12,8 @@ RUN apt-get update && apt-get install -y \
     wget \
     zsh \
     curl \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -y \
     libbz2-dev \
